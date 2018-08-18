@@ -6,12 +6,67 @@ mobx 本来是 react 的一个状态管理工具, 其实也可以用来作为coc
 
 使用 mobx 作为状态管理, 可以实现组件之间完全的解耦
 
+
+#### 使用前
+```
+@ccclass
+class ComponentA extends cc.Component {
+    @property(ComponentB) componentB: ComponentB
+    onClick1(){
+        this.componentB.do()
+    }
+    onClick2(){
+        this.componentB.undo()
+    }
+}
+
+@ccclass
+class ComponentB extends cc.Component {
+    _doing = false
+    do(){
+        if (!this._doing) { //为了防止重复调用可能引发副作用, 这里要做一次检查
+            this._doing = true
+            // do it
+        }
+    }
+    undo(){
+        if (this._doing) {
+            this._doing = true
+            // undo it
+        }
+    }
+}
+```
+#### 使用前状态工具后
+```
+@ccclass
+class ComponentA extends cc.Component {
+    @action
+    onClick(){
+        store.doing = true
+    }
+}
+
+@observer
+@ccclass
+class ComponentB extends cc.Component {
+    // 为了防止重复调用引发的问题
+    @render
+    renderDoing(){
+        if (store.doing) {
+            // do it
+        } else {
+            // undo it
+        }
+    }
+}
+```
 整个程序的逻辑转化为
 组件A <--> 数据 <--> 组件B
-
 * 解耦之后, 组件之间不再需要互相引用, 几乎不存在组件之间进行互相操作
 * 组件只需要根据数据直接进行渲染, 而不需要关心上下文状态以及其他组件的状态
 * 用户操作或者服务器推送的时候, 直接修改数据即可, 组件会在观测数据发生改变的时候自动重新渲染
+* 在组件树变得庞大的时候, 如果使用状态工具, 由于不存在组件间的调用问题, 结构相对简单
 * 因为组件自身完全独立, 所以方便制作成prefab进行加载, 将prefab直接挂在到节点上即可, 而不需要进行多余的操作
 
 ## 简单例子
