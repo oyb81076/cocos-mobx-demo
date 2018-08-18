@@ -1,0 +1,10 @@
+{
+  "name": "cocos-mobx",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "mobx": "^5.0.3",
+    "typescript": "^3.0.1"
+  }
+}
