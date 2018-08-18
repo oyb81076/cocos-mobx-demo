@@ -39,6 +39,11 @@ class ComponentB extends cc.Component {
 ```
 #### 使用前状态工具后
 ```
+class Store {
+    @observable doing = false
+}
+const store = new Store
+
 @ccclass
 class ComponentA extends cc.Component {
     @action
@@ -51,8 +56,8 @@ class ComponentA extends cc.Component {
     }
 }
 
-@observer
 @ccclass
+@observer
 class ComponentB extends cc.Component {
     @render
     renderDoing(){
