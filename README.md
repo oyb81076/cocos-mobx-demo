@@ -42,8 +42,12 @@ class ComponentB extends cc.Component {
 @ccclass
 class ComponentA extends cc.Component {
     @action
-    onClick(){
+    onClick1(){
         store.doing = true
+    }
+    @action
+    onClick2(){
+        store.doing = false
     }
 }
 
