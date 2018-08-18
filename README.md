@@ -50,7 +50,6 @@ class ComponentA extends cc.Component {
 @observer
 @ccclass
 class ComponentB extends cc.Component {
-    // 为了防止重复调用引发的问题
     @render
     renderDoing(){
         if (store.doing) {
