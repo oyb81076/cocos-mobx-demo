@@ -1,3 +1,5 @@
+fork 自 [oyb81076](https://github.com/oyb81076/cocos-mobx-demo)
+
 # 将 mobx 作为 cocos creator 项目状态管理的demo
 ## 运行
 npm install

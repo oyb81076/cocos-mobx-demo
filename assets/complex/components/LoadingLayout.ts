@@ -1,4 +1,4 @@
-import { observer, reactor, react } from "../../scripts/observer";
+import { observer, reactor } from "../../scripts/observer";
 import { socket } from "../stores";
 import LoadingLayoutLabel from "./LoadingLayoutLabel";
 const { ccclass, property } = cc._decorator
@@ -15,21 +15,18 @@ export default class LoadingLayout extends cc.Component {
     }
 
     /** 动态添加节点 */
-    @reactor reactor() {
-        return react(() => {
-            return socket.loading.size
-        }, (size: number) => {
-            const children = this.layout.node.children
-            let i = 0
-            for (i = 0; i < size; i++) {
-                if (!children[i]) {
-                    const node = cc.instantiate(this.labelPrefab)
-                    node.getComponent(LoadingLayoutLabel).init(i)
-                    this.layout.node.addChild(node)
-                }
+    @reactor(() => socket.loading.size)
+    reactor(size: number) {
+        const children = this.layout.node.children
+        let i = 0
+        for (i = 0; i < size; i++) {
+            if (!children[i]) {
+                const node = cc.instantiate(this.labelPrefab)
+                node.getComponent(LoadingLayoutLabel).init(i)
+                this.layout.node.addChild(node)
             }
-            let node: cc.Node
-            while (node = children[i++]) node.active = false
-        })
+        }
+        let node: cc.Node
+        while (node = children[i++]) node.active = false
     }
 }
