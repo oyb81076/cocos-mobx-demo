@@ -40,6 +40,9 @@ export const render = (target: any, key: string, descriptor: TypedPropertyDescri
     obs.push(key)
 }
 
+/**
+ * 将原先的两个方法合并进一个装饰器工厂内,减少复杂度
+ */
 export const reactor = <T>(expression: (r: IReactionPublic) => T) => {
     return (target: any, key: string, descriptor: TypedPropertyDescriptor<(arg: T) => void>) => {
         let obs: {
