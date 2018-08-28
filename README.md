@@ -78,7 +78,7 @@ class ComponentB extends cc.Component {
 * 因为组件自身完全独立, 所以方便制作成prefab进行加载, 将prefab直接挂在到节点上即可, 而不需要进行多余的操作
 
 ## 简单例子
-```
+```ts
 import { observer, render, react, reactor } from "../scripts/observer";
 import { observable, computed, action } from "mobx";
 
