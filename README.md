@@ -8,7 +8,7 @@ mobx 本来是 react 的一个状态管理工具, 其实也可以用来作为coc
 
 
 #### 使用前
-```
+```ts
 @ccclass
 class ComponentA extends cc.Component {
     @property(ComponentB) componentB: ComponentB
