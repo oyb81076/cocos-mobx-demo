@@ -38,7 +38,7 @@ class ComponentB extends cc.Component {
 }
 ```
 #### 使用前状态工具后
-```
+```ts
 class Store {
     @observable doing = false
 }
