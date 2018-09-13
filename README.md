@@ -143,17 +143,14 @@ export default class SimpleLoader extends cc.Component {
     /**
      * 观测 store.timestamp, 当timestamp发生改变的时候, 对total进行++操作
      * @reactor 注解说明
-     * @reactor func(){ return react(expression, reaction) }
-     * 观察 expression的返回值, 如果expression返回值发生任何变化, 就执行reaction
+     * 观察传入函数的返回值, 如果发生任何变化, 就执行当前函数,并将新值作为参数传入
      * 在onLoad的时候会执行自动执行第一次
      */
-    @reactor
-    protected reactorTimestamp() {
-        return react(() => store.timestamp, (timestamp) => {
-            if (timestamp) {//如果不是初始状态, 则total++
-                store.total++
-            }
-        })
+    @reactor(() => store.timestamp)
+    protected reactorTimestamp(timestamp: number) {
+        if (timestamp) {//如果不是初始状态, 则total++
+            store.total++
+        }
     }
 }
 ```

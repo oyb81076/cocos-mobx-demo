@@ -1,5 +1,5 @@
-import { observer, react, reactor } from "../../scripts/observer";
-import { socket } from "../stores";
+import { observer, reactor } from "../../scripts/observer";
+import { socket, EventLike } from "../stores";
 const sleep = (ms: number) => new Promise(x => setTimeout(x, ms))
 
 const { ccclass } = cc._decorator
@@ -21,17 +21,16 @@ export default class SocketPlugin extends cc.Component {
         socket.removeLoading(id)
     }
 
-    @reactor eventReactor() {
-        return react(() => {
-            if (!socket.event.type || !socket.event.timestamp) return null
-            return { ...socket.event }
-        }, (evt) => {
-            if (!evt) return
-            switch (evt.type) {
-                case socket.Type.LOGIN: return this.reqLogin()
-                case socket.Type.LOGOUT: return this.reqLogout()
-            }
-        })
+    @reactor(() => {
+        if (!socket.event.type || !socket.event.timestamp) return null
+        return { ...socket.event }
+    })
+    eventReactor(evt: EventLike | null) {
+        if (!evt) return;
+        switch (evt.type) {
+            case socket.Type.LOGIN: this.reqLogin()
+            case socket.Type.LOGOUT: this.reqLogout()
+        }
     }
 
     onDestroy() {
