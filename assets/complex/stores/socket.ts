@@ -1,12 +1,8 @@
 import { observable, action, computed } from "mobx";
-export enum EventType {
+enum EventType {
     NONE = 0,
     LOGIN = 1,
     LOGOUT = 2
-}
-export interface EventLike {
-    type: EventType,
-    timestamp: number
 }
 class SocketStore {
     public readonly Type = EventType
@@ -31,7 +27,7 @@ class SocketStore {
             .sort(([a], [b]) => a - b)
     }
     @observable
-    public readonly event: EventLike = { type: EventType.NONE, timestamp: 0 }
+    public readonly event = { type: EventType.NONE, timestamp: 0 }
     @action
     public act(type: EventType) {
         this.event.timestamp = Date.now()

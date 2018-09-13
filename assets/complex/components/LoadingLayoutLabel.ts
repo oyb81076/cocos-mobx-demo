@@ -1,4 +1,4 @@
-import { observer, render } from "../../scripts/observer";
+import { observer, reactor, react, render } from "../../scripts/observer";
 import { observable, action, computed } from "mobx";
 import { socket } from "../stores";
 
