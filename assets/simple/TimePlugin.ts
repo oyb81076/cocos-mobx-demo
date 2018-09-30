@@ -5,7 +5,7 @@ import { observer, react, reactor } from "../scripts/observer";
 import { action } from "mobx";
 import { store } from "./store";
 @cc._decorator.ccclass
-@observer 
+@observer
 export default class TimePlugin extends cc.Component {
     public onLoad() {
         this.schedule(this.updateCurrentTime, 1)
@@ -26,5 +26,11 @@ export default class TimePlugin extends cc.Component {
                 store.total++
             }
         })
+    }
+    @reactor(() => store.timestamp)
+    protected reactorTimestamp2(timestamp: number) {
+        if (timestamp) {
+            store.total++
+        }
     }
 }
