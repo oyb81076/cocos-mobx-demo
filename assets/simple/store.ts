@@ -2,7 +2,7 @@
  * 程序状态机
  */
 import { observable, computed } from "mobx";
-class Store {
+class SimpleStore {
     // 总共点击次数
     @observable public total = 0 
     // 按下按钮的时间
@@ -14,4 +14,4 @@ class Store {
         return `当前时间${new Date(this.currentTime).toISOString()}累计点击次数${this.total}次`
     }
 }
-export const store = new Store
+export const store = new SimpleStore

@@ -2,9 +2,10 @@
 # yarn lockfile v1
 
 
-mobx@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.npmjs.org/mobx/-/mobx-5.5.0.tgz#a29f6a7526eed28edcd3f0e921a1edaa8bb22575"
+mobx@^5.9.4:
+  version "5.9.4"
+  resolved "https://registry.npm.taobao.org/mobx/download/mobx-5.9.4.tgz#1dee92aba33f67b7baeeb679e3bd376a12e55812"
+  integrity sha1-He6Sq6M/Z7e67rZ54703ahLlWBI=
 
 typescript@^3.0.1:
   version "3.0.1"

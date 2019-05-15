@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "mobx": "^5.5.0",
+    "mobx": "^5.9.4",
     "typescript": "^3.0.1"
   }
 }
