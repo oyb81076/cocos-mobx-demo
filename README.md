@@ -162,7 +162,7 @@ export default class SimpleLoader extends cc.Component {
 v5.x版本mobx使用Proxy模式，在ios9.x版本的操作系统上无法运行，v4.x版本不存在这个问题
 
 ## 关于 observer.ts 文件
-我单独将 observer.ts 打包到 npm (mobx-cocos)[https://github.com/oyb81076/mobx-cocos]
+我单独将 observer.ts 打包到 npm [mobx-cocos](https://github.com/oyb81076/mobx-cocos)
 使用的方式如下
 ```ts
 // cfg.ts
